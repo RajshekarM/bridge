@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 const Trading = () => {
   const [marketData, setMarketData] = useState<{ timestamp: string, price: string } | null>(null);
   const [topStocks, setTopStocks] = useState<{ symbol: string, price: number }[]>([]);
-
+  
   useEffect(() => {
-    const ws = new WebSocket('ws://your-websocket-server-address:8080');
+    const ws = new WebSocket('ws://localhost:8080');
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
