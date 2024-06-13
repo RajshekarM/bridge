@@ -1,95 +1,49 @@
+// src/pages/Tech.js
 import { useEffect, useState } from 'react';
 
-const Trading = () => {
-  const [marketData, setMarketData] = useState<{ timestamp: string, price: string } | null>(null);
-  const [topStocks, setTopStocks] = useState<{ symbol: string, price: number }[]>([]);
-  const [activeTab, setActiveTab] = useState('watchlist');
-  const tabs = [
-    { name: 'Watchlist', key: 'watchlist' },
-    { name: 'Trending Stocks', key: 'trending' },
-    { name: 'Top 10 Stocks', key: 'top10' }
-  ];
+
+
+
+
+
+const Tech = () => {
+
+  const [blogs, setBlogs] = useState([{}])
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:8080');
-
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      setMarketData(data);
-    };
-
-    ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
-    };
-
-    return () => {
-      ws.close();
-    };
-  }, []);
-
-  useEffect(() => {
-    // Fetch top stocks data from an API endpoint
-    fetch('/api/top-stocks')
-      .then((response) => response.json())
-      .then((data) => setTopStocks(data))
-      .catch((error) => console.error('Error fetching top stocks:', error));
-  }, []);
-
-
-
-  const renderTabContent = () => {
-    switch (activeTab) {
-      case 'watchlist':
-        return <div>Watchlist content here...</div>;
-      case 'trending':
-        return <div>Trending Stocks content here...</div>;
-      case 'top10':
-        return <div>Top 10 Stocks content here...</div>;
-      default:
-        return null;
-    }
-  };
-
-
+    fetch('http://localhost:5000/api/blogs')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => setBlogs(data))
+      .catch((error) => console.error('Error fetching blogs:', error));
+  
+      
+    }, []); // Empty dependency array means this effect runs once when the component mounts
 
 
   return (
-    <div className="pt-20 container mx-auto">
-      <h1>Trading Page</h1>
-      <div>
-        <h2>Market Data</h2>
-        {marketData ? (
-          <div>
-            <p>Timestamp: {marketData.timestamp}</p>
-            <p>Price: {marketData.price}</p>
+    <div className="pt-20 container mx-auto px-4">
+    <h1 className="text-3xl font-bold text-center mb-10">Tech Page</h1>
+    <p className="text-center mb-10">Welcome to my Tech page. Here you will find my blog posts and projects related to technology.</p>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {blogs.map((post) => (
+        <div key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+          <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
+          <div className="p-4">
+            <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+            <p className="text-gray-600 mb-4">{post.content}</p>
+            <p className="text-gray-400 text-sm">{post.date}</p>
           </div>
-        ) : (
-          <p>Loading market data...</p>
-        )}
-      </div>
-      <h1 className="text-3xl font-bold text-center mb-10">Trading Page</h1>
-      <div className="mb-10">
-        <div className="flex justify-center">
-          {tabs.map((tab) => (
-            <button
-              key={tab.key}
-              className={`px-4 py-2 mx-2 rounded-t-lg ${
-                activeTab === tab.key
-                  ? 'bg-indigo-500 text-white'
-                  : 'bg-gray-200 text-gray-700'
-              }`}
-              onClick={() => setActiveTab(tab.key)}
-            >
-              {tab.name}
-            </button>
-          ))}
         </div>
-        <div className="border border-t-0 rounded-b-lg p-4 bg-white shadow-md">
-          {renderTabContent()}
-        </div>
-      </div>
+      ))}
     </div>
+  </div>
   );
 };
 
-export default Trading;
+export default Tech;
