@@ -5,7 +5,7 @@ import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-
+ 
  
 interface Blog {
   id: number;
@@ -43,14 +43,21 @@ app.put('/api/blogs/:id', async (req:Request, res:Response)=>{
     //   { new: true }
     // );
 
-    const updatedBlog = blogs.push({
+  
+    const updatedBlog = {
       id: Number(id),  // Corrected the id property
       title: title,
       content: content,
       image: image,
       date: '2024-06-11'  // Corrected the date property
+    };
+
+    blogs.forEach((blog, index) => {
+      if (blog.id === Number(id)) {
+        blogs[index] = updatedBlog;
+      }
     });
-    
+
     if (!updatedBlog) {
       return res.status(404).send({ message: 'Blog post not found' });
     }
@@ -62,6 +69,12 @@ app.put('/api/blogs/:id', async (req:Request, res:Response)=>{
 
 })
 
+app.post('/api/blogs', async (req:Request, res:Response)=>{
+
+  const {id} = req.params;
+  const {title, content, image} = req.body;
+
+})
 
 // Example API endpoint for top stocks
 app.get('/api/top-stocks', (req: Request, res: Response) => {

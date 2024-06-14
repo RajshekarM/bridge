@@ -6,6 +6,8 @@ import Tech from './pages/Tech';
 import Career from './pages/Career';
 import Personal from './pages/Personal';
 import Trading from './pages/Trading';
+import AddBlog from './components/AddBlog';
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/career" element={<Career/>} />
         <Route path="/personal" element={<Personal/>} />
         <Route path="/trading" element={<Trading/>}/>
+        <Route path="/add-blog" element={<AddBlog />} />
       </Routes>
     </Router>
   );
