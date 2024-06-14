@@ -6,7 +6,7 @@ const AddBlog = () => {
   const [content, setContent] = useState('');
   const [image, setImage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
 
     const newBlog = {

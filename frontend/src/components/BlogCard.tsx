@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 interface Blog {
-  id: number;
+  id?: number; // Optional id for new blogs that haven't been saved yet
   title: string;
   content: string;
-  image: string;
-  date: string;
+  image?: string; // Assuming image might be optional
+  date?: string; // Optional for new blogs
 }
 
 interface BlogCardProps {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import BlogCard from '../components/BlogCard';
 
 
 interface Blog {
@@ -54,6 +54,11 @@ const Tech = () => {
       .catch((error) => console.error('Error adding blog:', error));
   };
 
+
+  const handleSave = (updatedBlog: Blog) => {
+    setBlogs(blogs.map(blog => (blog.id === updatedBlog.id ? updatedBlog : blog)));
+  };
+
   return (
     <div className="pt-20 container mx-auto px-4">
       <h1 className="text-3xl font-bold text-center mb-10">Tech Page</h1>
@@ -100,15 +105,8 @@ const Tech = () => {
         </form>
       )}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {blogs.map((post) => (
-          <div key={post.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-            <img src={post.image} alt={post.title} className="w-full h-48 object-cover" />
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
-              <p className="text-gray-600 mb-4">{post.content}</p>
-              <p className="text-gray-400 text-sm">{post.date}</p>
-            </div>
-          </div>
+      {blogs.map((blog) => (
+          <BlogCard key={blog.id} blog={blog} onSave={handleSave} />
         ))}
       </div>
     </div>
