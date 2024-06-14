@@ -17,6 +17,7 @@ const path_1 = __importDefault(require("path"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 5000;
+let idCount = 2;
 const blogs = [
     { id: 1, title: 'First Blog', content: 'This is the first blog post.', image: 'first-blog.jpg', date: '2024-06-11' },
     { id: 2, title: 'Second Blog', content: 'This is the second blog post.', image: 'second-blog.jpg', date: '2024-06-11' },
@@ -24,9 +25,9 @@ const blogs = [
 // Serve static files from the React app
 //app.use(express.static(path.join(__dirname, '../../client/build')));
 app.use((0, cors_1.default)());
+app.use(express_1.default.json());
 // Example API endpoint for blogs
 app.get('/api/blogs', (req, res) => {
-    // Example blog data
     res.json(blogs);
 });
 app.put('/api/blogs/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -38,17 +39,35 @@ app.put('/api/blogs/:id', (req, res) => __awaiter(void 0, void 0, void 0, functi
         //   { title, content, image },
         //   { new: true }
         // );
-        const updatedBlog = blogs.push({
+        const updatedBlog = {
             id: Number(id), // Corrected the id property
             title: title,
             content: content,
             image: image,
             date: '2024-06-11' // Corrected the date property
+        };
+        blogs.forEach((blog, index) => {
+            if (blog.id === Number(id)) {
+                blogs[index] = updatedBlog;
+            }
         });
         if (!updatedBlog) {
             return res.status(404).send({ message: 'Blog post not found' });
         }
         res.status(200).send(blogs);
+    }
+    catch (error) {
+        res.status(500).send({ message: 'Error updating blog post', error });
+    }
+}));
+app.post('/api/blogs', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
+    const { title, content, image } = req.body;
+    console.log("reached post here");
+    try {
+        const newBlog = Object.assign(Object.assign({ id: blogs.length + 1 }, req.body), { date: new Date().toISOString().split('T')[0] });
+        blogs.push(newBlog);
+        res.status(201).json(newBlog);
     }
     catch (error) {
         res.status(500).send({ message: 'Error updating blog post', error });
