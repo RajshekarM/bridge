@@ -18,6 +18,9 @@ const Trading = () => {
       setMarketData(data);
     };
 
+
+
+
     ws.onerror = (error) => {
       console.error('WebSocket error:', error);
     };
@@ -46,7 +49,7 @@ const Trading = () => {
       case 'top10':
         return <div>Top 10 Stocks content here...</div>;
       default:
-        return null;
+        return null
     }
   };
 
@@ -84,6 +87,7 @@ const Trading = () => {
             </button>
           ))}
         </div>
+        <div className='w-1/5 rounded-lg text-center bg-red-500 text-white'>Set Mobile Notification</div>;
         <div className="border border-t-0 rounded-b-lg p-4 bg-white shadow-md">
           {renderTabContent()}
         </div>

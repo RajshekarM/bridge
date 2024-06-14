@@ -7,12 +7,12 @@ const Home = () => {
     <div className="pt-20">
       <section className="bg-gray-100 text-center py-20">
         <h1 className="text-4xl font-bold mb-4">Hey there. It's an awesome day.</h1>
-        <h2 className="font-bold mb-4">Small Quote : "Failure is stepping stone of the success"</h2>
-        <p className="text-xl mb-8">Software Engineer | Web Developer | AI Developer | Designer | Writer</p>
+        <h2 className="font-bold mb-4">Remember : "Failure is stepping stone of the success"</h2>
+        <p className="text-xl mb-8">Software Engineer | Web Developer | AI Developer | Computer Architect | Writer</p>
         <div className="flex justify-center space-x-4">
-          <a href="/tech" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Tech Page</a>
-          <a href="/career" className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700">Professional Career</a>
-          <a href="/personal" className="bg-purple-500 text-white py-2 px-4 rounded hover:bg-purple-700">Personal</a>
+          <a href="/tech" className="bg-slate-900 text-white py-2 px-4 rounded hover:bg-slate-700">Tech Page</a>
+          <a href="/career" className="bg-gray-900 text-white py-2 px-4 rounded hover:bg-green-700">Professional Career</a>
+          <a href="/personal" className="bg-gray-800 text-white py-2 px-4 rounded hover:bg-slate-700">Personal</a>
         </div>
       </section>
       <section className="container mx-auto my-20">
