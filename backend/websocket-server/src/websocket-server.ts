@@ -12,6 +12,7 @@ wss.on('connection', (ws: WebSocket) => {
 
   const userId : string = "12345";
 
+  //passing the websocket of the user
   redis.userSubscribe(userId, "APPLE", ws);
 
   ws.on('message', (message: string) => {

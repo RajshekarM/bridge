@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import TickerTable from '../components/TickerTable';
+import { WebSocketProvider } from '../services/WebSocketProvider';
+
 
 const Trading = () => {
   const [marketData, setMarketData] = useState<{ timestamp: string, price: string } | null>(null);
@@ -43,7 +46,11 @@ const Trading = () => {
   const renderTabContent = () => {
     switch (activeTab) {
       case 'watchlist':
-        return <div>Watchlist content here...</div>;
+        return <div>
+          <WebSocketProvider>   
+              <TickerTable />
+          </WebSocketProvider>
+        </div>
       case 'trending':
         return <div>Trending Stocks content here...</div>;
       case 'top10':
