@@ -61,7 +61,7 @@ const Tech = () => {
 
   return (
     <div className="pt-20 container mx-auto px-4">
-      <h1 className="text-3xl font-bold text-center mb-10">Tech Page</h1>
+      <h1 className="text-3xm font-bold text-center mb-10">This is tech and travelling blog. It is all about my thoughts, interesting topics, trending technologies</h1>
       <button
         className="bg-slate-900 w-1/6 text-white text-center py-2 px-4 rounded hover:bg-slate-700 mb-4"
         onClick={handleAddBlogClick}

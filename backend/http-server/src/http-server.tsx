@@ -18,6 +18,9 @@ let idCount = 2;
 const blogs: Blog[] = [
   { id: 1, title: 'First Blog', content: 'This is the first blog post.', image: 'first-blog.jpg', date: '2024-06-11' },
   { id: 2, title: 'Second Blog', content: 'This is the second blog post.', image: 'second-blog.jpg', date: '2024-06-11' },
+  { id: 2, title: 'Improving the Performace or latency of your program', 
+    content: 'CPU cache, which should ideally store the frequently accessed data and instructions of the hotpath, is instead being overwritten ("trampled") by data and instructions that are not part of the hotpath. This can happen because modern systems have many processes and data being accessed simultaneously, leading to cache pollution.Keeping the Caches Hot The concept of "keeping the caches hot" involves ensuring that the data and instructions relevant to the hotpath remain in the CPU cache as much as possible. This minimizes cache misses, which occur when the CPU has to fetch data from slower main memory instead of the fast cache.',
+    image: 'second-blog.jpg', date: '2024-06-11' },
 ];
 
 
