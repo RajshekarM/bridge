@@ -7,6 +7,7 @@ import Career from './pages/Career';
 import Personal from './pages/Personal';
 import Trading from './pages/Trading';
 import AddBlog from './components/AddBlog';
+import Project from './pages/Project';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/personal" element={<Personal/>} />
         <Route path="/trading" element={<Trading/>}/>
         <Route path="/add-blog" element={<AddBlog />} />
+        <Route path="/projects" element={<Project />} />
       </Routes>
     </Router>
   );
