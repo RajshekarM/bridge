@@ -1,5 +1,5 @@
 import WebSocket, { Server } from 'ws';
-import {PubSubManager} from './pubsub-Manager'
+import {PubSubManager} from './pubsub-manager'
 
 const PORT = 8080;
 
